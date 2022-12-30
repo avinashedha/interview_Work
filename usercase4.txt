@@ -1,0 +1,28 @@
+user id
+$user_id   = get_comment(get_comment_ID())->user_id;
+
+if ($user_id)
+{
+    $user_info = get_userdata($user_id );
+    echo implode(', ', $user_info->
+function get_the_author_role() {
+    global $wpdb, $wp_roles, $authordata;
+
+    if ( !isset($wp_roles) )
+        $wp_roles = new WP_Roles();
+
+    foreach($wp_roles->role_names as $role => $Role) {
+        $caps = $wpdb->prefix . 'capabilities';
+        if (array_key_exists($role, $authordata->$caps))
+            return $Role;
+    }
+}
+
+/**
+ * Echo the account role of the author of the current post in the Loop.
+ * @see get_the_author_role()
+ * @return null
+ */
+function the_author_role() {
+    echo get_the_author_role();
+}
