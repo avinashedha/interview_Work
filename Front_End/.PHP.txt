@@ -1,0 +1,81 @@
+<!-- Main content -->
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-header">
+                        <p style="text-align: center;font-size :30px;"><u>Articles</u>
+
+                        <div class="card-body">
+                            <!-- Start of form -->
+                            <div class="">
+                                <form method="post" action="<?php echo base_url("Project/insertoptionalleaves") ?>" autocomplete="off" id="updateProject" enctype="multipart/form-data">
+
+                                    <div class="row">
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label for="appointmentorder">Title<b class="text-danger">*</b></label>
+                                                <input type="tetx" id="title" name="title">
+                                            </div>
+                                        </div>
+
+                                        <div class="col-sm-3">
+                                            <div class="form-group">
+                                                <label for="appointmentorder">Post<b class="text-danger">*</b></label>
+                                                <textarea name="post" col="3" row="3"></textarea>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row text-center">
+                                        <div class="col-sm-12">
+                                            <div class="form-group">
+                                                <button type="submit" id="saveOrganizationDetails" class="btn btn-primary saveOrganizationDetails">Submit</button>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                </form>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+                <!-- /.card-body -->
+            </div>
+        </div>
+        <!-- /.card -->
+    </div>
+    <!-- /.col -->
+
+</section>
+<!-- /.content -->
+
+
+<script>
+    $(add_button).click(function(e) { //on add input button click
+        e.preventDefault();
+
+        $title = $.trim($("#title").val());
+        $post = $.trim($("#post"));
+
+        $.ajax({
+            url: "<?php echo base_url("Articles/createPost"); ?>",
+            type: 'POST',
+            dataType: "json",
+
+            data: {
+                title: $title,
+                post: $post,
+            },
+            success: function(data) {
+                showMessage("Post Added successfully.");
+            },
+            error: function(data) {
+                showErrorMessage("Unable to save record.");
+            }
+        });
+
+    });
+</script>
