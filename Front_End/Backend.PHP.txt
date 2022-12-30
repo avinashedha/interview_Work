@@ -1,0 +1,40 @@
+let firstNameEle = document.getElementById("firstName");
+let lastNameEle = document.getElementById("lastName");
+let roleEle = document.getElementById("role");
+let responseBodyEle=document.getElementById("responseBody");
+let sendGetRequestBtnEle = document.getElementById("sendGetRequestBtn");
+let requestMethodEle=document.getElementById("requestMethod")
+
+let formData = {
+    requestUrl: "https://gorest.co.in/public-api/users",
+    requestMethod: "POST"
+   
+};
+function display() {
+     let options = {
+        method: requestMethod,
+        headers: {
+            "content-type": "application/json",
+            Accept: "application/json",
+            Authorization: "Bearer 79094ef7108f0c7ff373fd3ba43371c7053fe996bbbed6c5132b83cff6e19261",
+
+        }
+
+    };
+     fetch(requestUrl, options)
+        .then(function(response) {
+            return response.json();
+
+        })
+        .then(function(jsonData) {
+            let status = jsonData.code;
+            let body = JSON.stringify(jsonData);
+            responseStatusEle.value = status;
+            responseBodyEle.value = body;
+        });
+
+}
+
+
+
+sendGetRequestBtnEle.addEventListener("click", display);
